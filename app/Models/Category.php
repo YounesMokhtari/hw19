@@ -37,7 +37,21 @@ class Category extends Model
     {
         return $this->hasManyThrough(Order::class, Product::class);
     }
+    public function getCategoryNameAttribute()
+    {
 
+
+        if ($this->category_parent == null) {
+            return 'ندارد';
+        }
+        return $this->category_parent;
+    }
+    public function getStatusAttribute()
+    {
+        if ($this->status == "notShow")
+            return 'منتشر نشده';
+        return 'منتشر شده';
+    }
 
     protected $hidden = ['timestamps'];
 }

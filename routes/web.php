@@ -28,9 +28,13 @@ Route::get('/category', function () {
 });
 
 Route::get('/show-category', function () {
-  $result = Category::with('products')->where("category_name", "موبایل")->get();
+  $result = Category::with('products')->where("category_name", "کالای دیجیتال")->get();
   dd($result);
 });
+Route::get('/show-categoryName', function () {
+    $result = Category::find(1);
+    dd($result->category_Name);
+  });
 
 Route::get('/show-orders', function () {
   $result = Category::with('orders')->where("category_name", "موبایل")->get();

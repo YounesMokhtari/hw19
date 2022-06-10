@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -34,7 +36,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-
+protected
+$append=[
+    'full_name'
+];
     /**
      * The attributes that should be cast.
      *
@@ -48,5 +53,37 @@ class User extends Authenticatable
 
     //     return $this->
 
-    // }
+    // }'
+    protected function email(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Str::ucfirst($value),
+            set: fn ($value) => Str::lower($value),
+        );
+    }
+    protected function firstName(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Str::ucfirst($value),
+
+        );
+    }
+    protected function lastName(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Str::ucfirst($value),
+
+        );
+    }
+    protected function city(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Str::ucfirst($value),
+
+        );
+    }
+    public function getFullNameAttribute()
+    {
+        return $this->first_name .'  ' . $this->last_name;
+    }
 }
