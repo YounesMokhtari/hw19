@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
     use HasFactory;
-    protected $fillable=[
+    protected $fillable = [
 
         'user_id',
         'product_id',
@@ -16,4 +17,13 @@ class Order extends Model
         'total_price',
     ];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function category()
+    {
+        return $this->hasOneThrough(Category::class, Product::class);
+    }
 }

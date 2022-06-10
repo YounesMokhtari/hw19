@@ -17,27 +17,35 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'mmd',
+            'first_name' => 'mmd',
+            'last_name' => 'panh',
             'email' => 'mmd@mmdi.com',
-            'password' => 'mmdian'
+            'city' => 'teh',
+
 
         ]);
         User::create([
-            'name' => 'mmd1',
+            'first_name' => 'mmd1',
+            'last_name' => 'panh',
+            'city' => 'teh',
+
             'email' => 'mmd1@mmdi.com',
-            'password' => 'mmdian1'
 
         ]);
         User::create([
-            'name' => 'amiro',
+            'first_name' => 'amiro',
+            'last_name' => 'panh',
+            'city' => 'teh',
+
             'email' => 'amiro@amirol.com',
-            'password' => 'amirloli'
 
         ]);
         User::create([
-            'name' => 'youneso',
+            'first_name' => 'youneso',
+            'last_name' => 'panh',
+            'city' => 'teh',
+
             'email' => 'youneso@younesi.com',
-            'password' => 'younesian'
 
         ]);
     }

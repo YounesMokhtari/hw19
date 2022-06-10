@@ -35,7 +35,9 @@ class Category extends Model
 
     public function orders()
     {
-
         return $this->hasManyThrough(Order::class, Product::class);
     }
+
+
+    protected $hidden = ['timestamps'];
 }
