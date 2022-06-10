@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -15,15 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-Route::get('/category',function(){
-  $res=Category::mainCategories()->get();
+Route::get('/category', function () {
+  $res = Category::mainCategories()->get();
 
-   $res=$res->toArray();
+  $res = $res->toArray();
 
-   return $res;
+  return $res;
 });
 
+Route::get('/show-category', function () {
+  $result = Category::with('products')->where("category_name", "موبایل")->get();
+  dd($result);
+});
 
+Route::get('/show-orders', function () {
+  $result = Category::with('orders')->where("category_name", "موبایل")->get();
+  dd($result);
+});

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable=[
+    protected $fillable = [
 
         'category_name',
         'category_parent',
@@ -16,13 +17,25 @@ class Category extends Model
     ];
 
 
-    public function scopeMainCategories($query){
+    public function scopeMainCategories($query)
+    {
 
-        return $query->where("category_parent",null);
+        return $query->where("category_parent", null);
     }
-    public function scopeShowCategories($query){
+    public function scopeShowCategories($query)
+    {
 
-        return $query->where("status",'show');
+        return $query->where("status", 'show');
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function orders()
+    {
+
+        return $this->hasManyThrough(Order::class, Product::class);
+    }
 }

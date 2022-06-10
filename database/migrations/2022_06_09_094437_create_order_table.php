@@ -17,8 +17,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);//user_id
-            $table->foreignIdFor(Product::class);//product_id
+            $table->foreignIdFor(User::class)->constrained();; //user_id
+            $table->foreignIdFor(Product::class)->constrained();; //product_id
             $table->unsignedBigInteger('order_qty');
             $table->unsignedBigInteger('total_price');
             $table->timestamps();
